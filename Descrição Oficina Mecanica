@@ -1,0 +1,75 @@
+Tema : Oficina mecânica
+Requesitos
+a.	Manter Cliente
+i.	Incluir
+ii.	Excluir
+iii.	Alterar
+iv.	Ler
+b.	Manter Veiculo
+i.	Incluir
+ii.	Excluir
+iii.	Alterar
+iv.	Ler
+2.	Funcionalidades
+a.	Pesquisar veiculo em conserto pela placa
+b.	Alterar Status do veiculo
+c.	Filtrar veículos por concluído e por em conserto
+d.	Administrador Deverá
+i.	Criar novo Operador
+ii.	Criar novo cliente, carro e serviço
+iii.	Gerenciar serviços, carros e clientes
+iv.	Visualizar e alterar status de serviços
+e.	Operador deverá
+i.	Gerar novo cliente
+ii.	Gerar novo carro
+iii.	Gerar novo serviço
+iv.	Visualizar e alterar status de serviços
+f.	Visitante deverá
+i.	Visualizar status de serviço
+3.	Paginas
+a.	Navbar
+i.	Logotipo [OffCars]
+ii.	Menu [ Home | Ajuda | Creditos ]
+iii.	<div> De Login	
+b.	Home
+i.	Botão de Pesquisa de Veiculos
+ii.	Exibir todos os veículos em manutenção [“Uma Tabela”]
+1.	Contendo [Placa, Valor a Ser Pago, Data de entrega;] 
+c.	Ajuda
+i.	Contato da Empresa que produziu o sistema.
+1.	Telefone
+2.	Nome da empresa
+3.	Email
+d.	Creditos 
+i.	Pessoal da equipe
+1.	Cards com
+a.	Fotos
+b.	Nome
+c.	Oque participou
+d.	Facebook
+e.	Footer
+i.	Menu e copiright da empresa que produziu o sistema
+4.	Banco de Dados
+a.	Tabela Cliente
+i.	Nome [varchar(50)]
+ii.	Cpf	[Int]
+b.	Tabela Usuario
+i.	Nome	[varchar(50)]
+ii.	Cargo	[varchar(20)] (Administrador, Operario, Visitante [Enquanto não Logado])
+iii.	Senha	[varchar(16)]
+c.	Tabela Veiculos
+i.	Placa (Primary Key) [varchar(7)] (ZZZ9999)
+ii.	Modelo Veiculo [varchar(20)] (Nome)
+iii.	Cor [varchar(30)] 
+iv.	Ano [int]
+d.	Tabela Serviço
+i.	Primary Key (Placa + CPF)
+ii.	Problema [varchar(100)]
+iii.	Status	[varchar(30)] (Em conserto, Pronto, Em orçamento)
+iv.	Preço	[Int(6)]
+5.	Observações
+a.	Clientes são apenas para registrar quem encomendou tal serviço
+b.	Cadastro de carro é apenas para linkar qual o carro que pertence ao serviço
+c.	Serviço é oque será exibido como chave principal, na home page, definindo qual o carro e qual é o dono do carro.
+
+
