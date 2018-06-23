@@ -12,8 +12,7 @@ create table carro
 	modelo varchar(30) not null,
 	marca varchar(30) not null,
 	ano year not null,
-	cliente int not null,
-	foreign key (cliente) references cliente(cpf)
+	cliente int not null
 )
 
 create table mecanico
@@ -27,7 +26,5 @@ create table conserto
 	carro varchar(7) not null,
 	mecanico int not null,
 	peca varchar(20) not null,
-	preco decimal(5,2),
-	foreign key(carro) references carro(placa),
-	foreign key(mecanico) references mecanico(cpf)
+	preco decimal(5,2)
 )
