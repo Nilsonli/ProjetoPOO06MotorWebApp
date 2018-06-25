@@ -1,3 +1,57 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="br.com.fatecpg.motorwebapp.web.User"%>
 <%@ page pageEncoding="UTF-8" %>
-<h2>Hello World!</h2>
+<%
+    String path = request.getContextPath();
+    String errorMessage = null;
+    if(request.getParameter("formLogin")!=null)
+    {
+        String login = request.getParameter("user");
+        String password = request.getParameter("pass");
+        User u = User.getUser(login, password);
+        if(u==null)
+        {
+            errorMessage = "Usuario e/ou senha invalido(s)";
+        }
+        else
+        {
+            session.setAttribute("user", u);
+            response.sendRedirect(request.getRequestURI());
+        }
+    }
+    if(request.getParameter("formLogoff") != null)
+    {
+        session.removeAttribute("user");
+        response.sendRedirect(request.getRequestURI());
+    }
+%>
+<h1>Parking Web</h1>
+<%if(errorMessage!=null){%>
+<h3 style="color: red"><%= errorMessage %> </h3>
+<%}%>
+<%  if(session.getAttribute("user") == null)
+    {%>
+    <form>
+        <label for="user">Login</label>
+        <input type="text" name="user" id="user"/>
+        <label for="password">Senha</label>
+        <input type="password" name="pass" id="password"/>
+        <input type="submit" name="formLogin" value="Entrar"/>
+    </form>
+    <%}else{%>
+    <form>
+    <% User user = (User) session.getAttribute("user"); %>
+    Bem vindo, <%= user.getName() %> [<%= user.getRole() %>]
+    <input type="submit" name="formLogoff" value="Sair"/>
+    </form>
+    <h2>
+        <a href="<%= path %>/home.jsp"> Home </a>
+        <%if(user.getRole().equals("ADMIN")){ %>  || [<a href="<%= path %>/admin/users.jsp"> Usuarios </a>] <%}%>
+        || <a href="<%= path %>/perfil.jsp">Perfil</a>
+        || <a href="<%= path %>/operador/clientes.jsp">Clientes</a>
+        || <a href="<%= path %>/operador/clientes.jsp">Mecanicos</a>
+        || <a href="<%= path %>/operador/carros.jsp">Carros</a>
+        || <a href="<%= path %>/operador/consertos.jsp">Consertos</a>
+    </h2>
+    <%}%>
+<hr/>
