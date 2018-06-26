@@ -47,6 +47,7 @@
     </head>
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf" %>
+        <h1>Usuarios</h1>
         <%if(session.getAttribute("user") == null){%>
             <h2 style="color: red">TU NÃO TA LOGADO NÃO MERMÃO</h2>
         <%}else{%>
@@ -63,7 +64,7 @@
                     <table>
                         <tr><td><label for="role">Papel </label></td><td><select name="role" id="role">
                                                         <option value="ADMIN">ADMIN</option >
-                                                        <option value="OPERARDOR">OPERADOR</option>     
+                                                        <option value="OPERADOR">OPERADOR</option>     
                                                     </select></td></tr>
                     <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
                     <tr><td><label for="user">Usuario </label></td><td><input type="text" name="user" id="user" required/></td></tr>
@@ -96,6 +97,5 @@
             <%}
         %>
         <%}%>
-        <h1>Usuarios</h1>
     </body>
 </html>

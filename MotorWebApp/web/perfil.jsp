@@ -52,7 +52,7 @@
                     <table border="0">
                     <tr><td>Papel </td><td><select name="role" id="role">
                         <%if(userss.getRole().equals("ADMIN")){ %><option value="ADMIN">ADMIN</option ><option value="OPERADOR">OPERADOR</option> <%}%>    
-                        <%if(userss.getRole().equals("OPERADOR")){ %><option value="OPERADOR">OPERADOR</option><option value="ADMIN">ADMIN</option > <%}%>    
+                        <%if(userss.getRole().equals("OPERADOR")){ %><option value="OPERADOR">OPERADOR</option> <%}%>    
                             </select></td><td></td></tr>
                     <tr><td>Nome</td><td><input type="text" name="nome" value="<%= users.getName() %>" id="nome" required/></td><td></td></tr>
                     <tr><td>Usuario </td><td><input type="text" name="user" value="<%= users.getLogin() %>" id="user" required/></td><td></td></tr>
