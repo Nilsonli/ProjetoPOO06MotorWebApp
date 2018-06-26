@@ -38,7 +38,6 @@
         modelo = c.getModelo();
         ano = c.getAno();
         cliente = c.getCliente();
-        response.sendRedirect(request.getRequestURI());
     }
     if(request.getParameter("formNewCar") != null)
     {
@@ -116,13 +115,13 @@
             <fieldset>
                 <legend>Alterar Carro de Placa nº: <%= placa %></legend>
                 <form>
-                    
-                    <label for="placae">Placa </label><input type="text" name="placa" value="<%= placa %>" id="placae" required/>
-                    <label for="modeloe">Modelo </label><input type="text" name="modelo" value="<%= modelo %>" id="modeloe" required/>
-                    <label for="marcae">Marca </label><input type="text" name="marca" value="<%= marca %>" id="marcae" required/>
-                    <label for="anoe">Ano </label><input type="number" name="ano" value="<%= ano %>" id="anoe" required/>
-                    <input type="hidden" name="id" value="<%= id %>">
-                    <label for="clientee">Cliente </label><select name="cliente" id="clientee">
+                    <table
+                        <tr><td><label for="placae">Placa </label></td><td><input type="text" name="placa" value="<%= placa %>" id="placae" required/></td></tr>
+                        <tr><td><label for="modeloe">Modelo </label></td><td><input type="text" name="modelo" value="<%= modelo %>" id="modeloe" required/></td></tr>
+                        <tr><td><label for="marcae">Marca </label></td><td><input type="text" name="marca" value="<%= marca %>" id="marcae" required/></td></tr>
+                        <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" value="<%= ano %>" id="anoe" required/></td></tr>
+                        <tr><td><input type="hidden" name="id" value="<%= id %>">
+                        <tr><td><label for="clientee">Cliente </label></td><td><select name="cliente" id="clientee">
                         <% ArrayList<Object[]> um = Carros.getClientee(id);
                             Object[] ob = um.get(0);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
@@ -132,8 +131,9 @@
                             Object[] obj = o.get(i);  %>
                             <option value="<%= (long) obj[0] %>"><%= (String) obj[1] %></option >
                             <%}}%>
-                            </select>
-                    <input type="submit" name="executaAlterar" value="Alterar"/>
+                            </select></td></tr>
+                        <tr align="right"><td colspan="2"><input type="submit" name="executaAlterar" value="Alterar"/></td></tr>
+                    </table>
                 </form>
             </fieldset>
             <hr/>
@@ -145,15 +145,19 @@
                     <th>MODELO</th>
                     <th>MARCA</th>
                     <th>ANO</th>
+                    <th>CLIENTE</th>
                     <th colspan="2">Ações</th>
                 </tr>
                 <%for(Carros c: Carros.getCarros()){ %>
                     <tr>
+                        <% ArrayList<Object[]> um = Carros.getClientee(c.getId());
+                            Object[] ob = um.get(0);  %>
                         <td><%= c.getId()%></td>
                         <td><%= c.getPlaca() %></td>
                         <td><%= c.getModelo() %></td>
                         <td><%= c.getMarca() %></td>
                         <td><%= c.getAno() %></td>
+                        <td><%= (String) ob[1] %></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= c.getId() %>"/>
                                 <input type="submit" name="formDeletar" value="Deletar">
