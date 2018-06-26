@@ -1,7 +1,7 @@
 create table cliente
 (
         id bigint not null primary key generated always as identity (start with 1, increment by 1),
-	cpf int not null,
+	cpf varchar(11) not null,
 	nome varchar(100) not null,
 	tel varchar(11) not null
 
@@ -20,14 +20,14 @@ create table carro
 create table mecanico
 (
         id bigint not null primary key generated always as identity (start with 1, increment by 1),
-	cpf int not null,
+	cpf varchar(11) not null,
 	nome varchar(100) not null
 );
 
 create table conserto
 (
         id bigint not null primary key generated always as identity (start with 1, increment by 1),
-	carro varchar(7) not null,
+	carro int not null,
 	mecanico int not null,
 	peca varchar(20) not null,
 	preco decimal(5,2)
