@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 public class Mecanico {
     private long id;
-    private int cpf;
+    private String cpf;
     private String nome;
 
-public Mecanico(long id, int cpf, String nome) {
+public Mecanico(long id, String cpf, String nome) {
          
         this.id = id;
         this.cpf = cpf;
@@ -26,11 +26,11 @@ public Mecanico(long id, int cpf, String nome) {
         this.id = id;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -58,7 +58,7 @@ public Mecanico(long id, int cpf, String nome) {
                 Object row[] = list.get(i);
                 Mecanico m = new Mecanico(
                     (long)row[0]
-                  , (int) row[1]
+                  , (String) row[1]
                   , (String) row[2]);
                     
                 mecanic.add(m);
@@ -78,7 +78,7 @@ public Mecanico(long id, int cpf, String nome) {
         Object parameters[] = {id};
         DatabaseConnector.setQuery(SQL, parameters);
     }
-    public static void altMecanico(int cpf, String nome, long id) throws SQLException, ClassNotFoundException
+    public static void altMecanico(String cpf, String nome, long id) throws SQLException, ClassNotFoundException
     {   
         String SQL = "UPDATE MECANICO SET cpf=?, nome=?, WHERE ID=?";
         Object parameters[] = {cpf, nome, id};
@@ -98,7 +98,7 @@ public Mecanico(long id, int cpf, String nome) {
             Object row[] = list.get(0);
             Mecanico m = new Mecanico(
                     (long)row[0]
-                    , (int) row[1]
+                    , (String) row[1]
                     , (String) row[2]);
                     
             return m;
