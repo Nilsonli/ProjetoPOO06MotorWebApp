@@ -60,14 +60,16 @@
             <fieldset>
             <legend>Novo usuario</legend>
                 <form>
-                    <label for="role">Papel </label><select name="role" id="role">
+                    <table>
+                        <tr><td><label for="role">Papel </label></td><td><select name="role" id="role">
                                                         <option value="ADMIN">ADMIN</option >
                                                         <option value="OPERARDOR">OPERADOR</option>     
-                                                    </select>
-                    <label for="nome">Nome </label><input type="text" name="nome" id="nome" required/>
-                    <label for="user">Usuario </label><input type="text" name="user" id="user" required/>
-                    <label for="pass">Senha </label><input type="password" name="pass" id="pass" required/>
-                    <input type="submit" name="formNewUser" value="Adicionar"/>
+                                                    </select></td></tr>
+                    <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
+                    <tr><td><label for="user">Usuario </label></td><td><input type="text" name="user" id="user" required/></td></tr>
+                    <tr><td><label for="pass">Senha </label></td><td><input type="password" name="pass" id="pass" required/></td></tr>
+                    <tr align="right"><td colspan="2"><input type="submit" name="formNewUser" value="Adicionar"/></td></tr>
+                    </table>
                 </form>
             </fieldset>
             <table border="1">

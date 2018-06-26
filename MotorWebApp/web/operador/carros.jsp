@@ -95,19 +95,20 @@
             <fieldset>
             <legend>Novo Carro</legend>
                 <form>
-                    
-                    <label for="placa">Placa </label><input type="text" name="placa" id="placa" required/>
-                    <label for="modelo">Modelo </label><input type="text" name="modelo" id="modelo" required/>
-                    <label for="marca">Marca </label><input type="text" name="marca" id="marca" required/>
-                    <label for="ano">Ano </label><input type="number" name="ano" id="ano" required/>
-                    <label for="cliente">Cliente </label><select name="cliente" id="cliente">
+                    <table>
+                        <tr><td><label for="placa">Placa </label></td><td><input type="text" name="placa" id="placa" required/></td></tr>
+                    <tr><td><label for="modelo">Modelo </label></td><td><input type="text" name="modelo" id="modelo" required/></td></tr>
+                    <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
+                    <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" id="ano" required/></td></tr>
+                    <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente">
                         <% ArrayList<Object[]> o = Carros.getClientes(0);
                             for(int i = 0; i < o.size(); i++){
                             Object[] ob = o.get(i);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
                             <%}%>
-                            </select>
-                    <input type="submit" name="formNewCar" value="Adicionar"/>
+                            </select></td></tr>
+                    <tr align="right"><td colspan="2"><input type="submit" name="formNewCar" value="Adicionar"/></td></tr>
+                    </table>
                 </form>
             </fieldset>
             <hr/>
