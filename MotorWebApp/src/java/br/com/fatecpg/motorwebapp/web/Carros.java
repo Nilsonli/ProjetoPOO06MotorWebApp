@@ -160,7 +160,7 @@ public class Carros {
     }
     public static ArrayList<Object[]> getClientee(long id) throws SQLException, ClassNotFoundException
     {   
-        String SQL = "SELECT CLIENTE.ID, CLIENTE.NOME FROM CLIENTE, CARRO WHERE CARRO.ID = CLIENTE.ID AND CARRO.CLIENTE = ?";
+        String SQL = "SELECT CLIENTE.ID, CLIENTE.NOME FROM CLIENTE, CARRO WHERE CARRO.CLIENTE = CLIENTE.ID AND CLIENTE.ID = ?";
         ArrayList<Object[]> clientes = new ArrayList<>();
         Object parameters[] = {id};
         ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, parameters);

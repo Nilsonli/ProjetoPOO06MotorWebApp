@@ -100,11 +100,14 @@
                     <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
                     <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" id="ano" required/></td></tr>
                     <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente">
-                        <%try{ ArrayList<Object[]> o = Carros.getClientes(0);
-                            for(int i = 0; i < o.size(); i++){
+                        <% ArrayList<Object[]> o = Carros.getClientes(0);
+                            try{for(int i = 0; i < o.size(); i++){
                             Object[] ob = o.get(i);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                            <%}} catch(Exception ex) {%><option value=" ">Não há clientes</option > <%} %>
+                            <%}}
+                            catch(Exception ex) {%>
+                            <option value="null" disabled>Não há clientes</option>
+                            <%}%>
                             </select></td></tr>
                     <tr align="right"><td colspan="2"><input type="submit" name="formNewCar" value="Adicionar"/></td></tr>
                     </table>
@@ -122,10 +125,11 @@
                         <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" value="<%= ano %>" id="anoe" required/></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%= id %>">
                         <tr><td><label for="clientee">Cliente </label></td><td><select name="cliente" id="clientee">
-                        <%try{ ArrayList<Object[]> um = Carros.getClientee(id);
+                        <% ArrayList<Object[]> um = Carros.getClientee(id);
                             Object[] ob = um.get(0);  %>
-                            <option value="<%= (long) ob[0] %>"><%= (String) ob[1]%></option><%}catch(Exception ex){}%>
-                        <%try{ArrayList<Object[]> o = Carros.getClientes(id);
+                            <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
+                        <%  ArrayList<Object[]> o = Carros.getClientes(id);
+                            try{
                             for(int i = 0; i < o.size(); i++){
                             Object[] obj = o.get(i);  %>
                             <option value="<%= (long) obj[0] %>"><%= (String) obj[1] %></option >
@@ -147,9 +151,11 @@
                     <th>CLIENTE</th>
                     <th colspan="2">Ações</th>
                 </tr>
-                <%for(Carros c: Carros.getCarros()){ %>
+                <%try {
+                    for(Carros c: Carros.getCarros()){
+                    %>
                     <tr>
-                        <% try{ArrayList<Object[]> um = Carros.getClientee(c.getId());
+                        <% ArrayList<Object[]> um = Carros.getClientee(c.getCliente());
                             Object[] ob = um.get(0);  %>
                         <td><%= c.getId()%></td>
                         <td><%= c.getPlaca() %></td>
@@ -166,7 +172,7 @@
                                 <input type="submit" name="formAlterar" value="Alterar">
                         </form></td>
                     </tr>
-                <%}catch(Exception ex) {}} %>
+                    <%}} catch(Exception ex){} %>
             </table>
             <%}%>
     </body>
