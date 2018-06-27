@@ -4,6 +4,8 @@
     Author     : PauloHGama
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.fatecpg.motorwebapp.web.Carros"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,6 +18,8 @@
     int ano = 0;
     int cliente = 0;
     long id = 0;
+    Date d = new Date();
+    d.getYear();
     if(request.getParameter("formDeletar") != null)
     {
         id = Long.parseLong(request.getParameter("id"));
@@ -95,12 +99,12 @@
             <legend>Novo Carro</legend>
                 <form>
                     <table>
-                        <tr><td><label for="placa">Placa </label></td><td><input type="text" name="placa" id="placa" required/></td></tr>
+                        <tr><td><label for="placa">Placa </label></td><td><input type="text" name="placa" maxlength="7" id="placa" required/></td></tr>
                     <tr><td><label for="modelo">Modelo </label></td><td><input type="text" name="modelo" id="modelo" required/></td></tr>
                     <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
-                    <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" id="ano" required/></td></tr>
-                    <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente">
-                        <% ArrayList<Object[]> o = Carros.getClientesMenosUm(0);
+                    <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" max="<%=(d.getYear()+1900)%>" min="1940" id="ano" required/></td></tr>
+                    <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente" required>
+                        <% ArrayList<Object[]> o = Carros.getClientes(0);
                             try{for(int i = 0; i < o.size(); i++){
                             Object[] ob = o.get(i);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
@@ -119,16 +123,16 @@
                 <legend>Alterar Carro de Placa nº: <%= placa %></legend>
                 <form>
                     <table
-                        <tr><td><label for="placae">Placa </label></td><td><input type="text" name="placa" value="<%= placa %>" id="placae" required/></td></tr>
+                        <tr><td><label for="placae">Placa </label></td><td><input type="text" name="placa" maxlength="7" value="<%= placa %>" id="placae" required/></td></tr>
                         <tr><td><label for="modeloe">Modelo </label></td><td><input type="text" name="modelo" value="<%= modelo %>" id="modeloe" required/></td></tr>
                         <tr><td><label for="marcae">Marca </label></td><td><input type="text" name="marca" value="<%= marca %>" id="marcae" required/></td></tr>
-                        <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" value="<%= ano %>" id="anoe" required/></td></tr>
+                        <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" max="<%= (d.getYear()+1900) %>" min="1940" value="<%= ano %>" id="anoe" required/></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%= id %>">
                         <tr><td><label for="clientee">Cliente </label></td><td><select name="cliente" id="clientee">
-                        <% ArrayList<Object[]> um = Carros.getClienteDeCadaCarro(id);
+                        <% ArrayList<Object[]> um = Carros.getClientee(id);
                             Object[] ob = um.get(0);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                        <%  ArrayList<Object[]> o = Carros.getClientesMenosUm(id);
+                        <%  ArrayList<Object[]> o = Carros.getClientes(id);
                             try{
                             for(int i = 0; i < o.size(); i++){
                             Object[] obj = o.get(i);  %>
@@ -155,7 +159,7 @@
                     for(Carros c: Carros.getCarros()){
                     %>
                     <tr>
-                        <% ArrayList<Object[]> um = Carros.getClienteDeCadaCarro(c.getCliente());
+                        <% ArrayList<Object[]> um = Carros.getClientee(c.getCliente());
                             Object[] ob = um.get(0);  %>
                         <td><%= c.getId()%></td>
                         <td><%= c.getPlaca() %></td>
