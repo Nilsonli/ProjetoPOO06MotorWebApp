@@ -91,8 +91,8 @@
                 <form>
                     <table class="text-center mx-auto">
                         <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
-                    <tr><td><label for="cpf">CPF </label></td><td><input type="text" name="cpf" id="cpf" required/></td></tr>
-                    <tr><td><label for="tel">Telefone </label></td><td><input type="text" name="tel" id="tel" required/></td></tr>
+                        <tr><td><label for="cpf">CPF </label></td><td><input type="text" name="cpf" maxlength="11" id="cpf" required/></td></tr>
+                    <tr><td><label for="tel">Telefone </label></td><td><input type="text" name="tel"  maxlength="11" id="tel" required/></td></tr>
                     <tr align="right"><td colspan="2"><input type="submit" name="formNewCliente" value="Adicionar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
@@ -108,8 +108,9 @@
                     <table class="text-center mx-auto">
                         <tr><td><label for="nomee">Nome </label></td><td><input type="text" name="nome" value="<%= nome %>" id="nomee" required/></td></tr>
                         <tr><td><label for="cpfe">CPF </label></td><td><input type="text" name="cpf" value="<%= cpf %>" id="cpfee" required/></td></tr>
-                        <tr><td><label for="tele">Telefone </label></td><td><input type="text" name="tel" value="<%= tel %>" id="tele" required/></td></tr>
-                        <input type="hidden" name="id" value="<%=id%>">
+                        <tr><td><label for="tele">Telefone </label></td><td><input type="text" name="tel" value="<%= tel %>" id="tele" required/>
+                                <input type="hidden" name="id" value="<%=id%>"></td></tr>
+                        
                         <tr align="right"><td colspan="2"><input type="submit" name="executaAlterar" value="Alterar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
@@ -144,8 +145,7 @@
                                 <input type="submit" name="formAlterar" value="Alterar" class="btn btn-warning">
                         </form></td>
                     </tr>
-                <%}} catch(Exception ex){
-                        out.print(ex.getMessage());} %>
+                <%}} catch(Exception ex){} %>
             </table>
             <%}%>
             <br/>

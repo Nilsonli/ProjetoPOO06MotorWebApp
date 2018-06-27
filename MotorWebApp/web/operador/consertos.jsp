@@ -108,21 +108,23 @@
             <fieldset>
                 <legend>Cadastrar Conserto</legend>
                 <form>
-                    Carro <select name="placa" id="placa" required>
+                    <table class="text-center mx-auto">
+                        <tr><td>Carro</td><td> <select name="placa" id="placa" required>
                         <% try{ for(Carros c: Carros.getCarros()){%>
                         <option value="<%= c.getId()%>"><%= c.getMarca()+'/'+c.getModelo()+'/'+ c.getPlaca() %></option>
                         <%}}catch(Exception ex){%><option value="null" disabled>Não há Carros</option><%}%>
-                    </select>
-                    Mecanico <select name="mecanico" id="mecanico">
+                                </select></td></tr>
+                    <tr><td>Mecanico</td><td> <select name="mecanico" id="mecanico">
                         <% try{ for(Mecanico m: Mecanico.getMecanico()){%>
                         <option value="<%= m.getId()%>"><%= m.getNome() %></option>
                         <%}}catch(Exception ex){%><option value="null" disabled>Não há Mecanicos</option><%}%>
-                    </select>
-                    Peça Utilizada <input type="text" name="peca" id="peca" required>
-                    Valor do conserto <input type="number" name="preco" step="0.1" id="preco" required>
-                    <input type="submit" name="addNewConserto" value="Confirmar" class="btn btn-success">
-                    <input type="reset" name="resetForm" value="Cancelar" class="btn btn-danger">
-                </form>
+                    </select></td></tr>
+                    <tr><td>Peça Utilizada</td><td> <input type="text" name="peca" id="peca" required></td></tr>
+                    <tr><td>Valor do conserto</td><td> <input type="number" name="preco" step="0.1" id="preco" required></td></tr>
+                    <tr><td><input type="submit" name="addNewConserto" value="Confirmar" class="btn btn-success">
+                    </td><td><input type="reset" name="resetForm" value="Cancelar" class="btn btn-danger"></td></tr>
+                    </table>
+                    </form>
             </fieldset>
                     <br/>
             </div>
@@ -132,27 +134,32 @@
             <fieldset>
                 <legend>Alterar Conserto</legend>
                 <form>
-                    Carro <select name="altplaca" id="altplaca" required>
+                    <table class="text-center mx-auto">
+                        <tr>
+                            <td>Carro</td>
+                            <td> <select name="altplaca" id="altplaca" required>
                         <% try{ for(Carros c: Carros.getCarros()){%>
                         <% if(cp == c.getId()){%>
                         <option selected="" value="<%= c.getId()%>"><%= c.getMarca()+'/'+c.getModelo()+'/'+ c.getPlaca() %></option>
                         <%}else{%>
                         <option value="<%= c.getId()%>"><%= c.getMarca()+'/'+c.getModelo()+'/'+ c.getPlaca() %><%}%></option>
                         <%}}catch(Exception ex){%><option value="null" disabled>Não há Carros</option><%}%>
-                    </select>
-                    Mecanico <select name="altmecanico" id="altmecanico">
+                                </select><td></tr>
+                        <tr><td>Mecanico</td><td> <select name="altmecanico" id="altmecanico">
                         <% try{ for(Mecanico m: Mecanico.getMecanico()){%>
                         <% if(cm == m.getId()){%>
                         <option selected="" value="<%= m.getId()%>"><%= m.getNome()%></option>
                         <%}else{%>
                         <option value="<%= m.getId()%>"><%= m.getNome() %><%}%></option>
                         <%}}catch(Exception ex){%><option value="null" disabled>Não há Mecanicos</option><%}%>
-                    </select>
-                    Peça Utilizada <input type="text" name="altpeca" id="altpeca" value="<%= nomepeca %>" required>
-                    Valor do conserto <input type="number" name="altpreco" step="0.1" id="altpreco" value="<%= preco %>" required>
-                                      <input type="hidden" name="idalt" value="<%= altidc %>"/>
-                    <input type="submit" name="alterarConserto" value="Confirmar" class="btn btn-success">
-                    <input type="submit" name="resetFormalt" value="Cancelar" class="btn btn-danger">
+                                </select></td></tr>
+                        <tr><td>Peça Utilizada</td> <td><input type="text" name="altpeca" id="altpeca" value="<%= nomepeca %>" required></td></tr>
+                        <tr><td>Valor do conserto</td><td> <input type="number" name="altpreco" step="0.1" id="altpreco" value="<%= preco %>" required>
+                                <input type="hidden" name="idalt" value="<%= altidc %>"/></td></tr>
+                                      
+                                      <tr><td><input type="submit" name="alterarConserto" value="Confirmar" class="btn btn-success">
+                                          </td><td><input type="submit" name="resetFormalt" value="Cancelar" class="btn btn-danger"></td></tr>
+                    </table>
                 </form>
             </fieldset>
                     <br/>

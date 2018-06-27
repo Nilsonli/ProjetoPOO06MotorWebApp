@@ -126,6 +126,7 @@
             <hr/>
             <%}%>
             <div class="container-fluid border border-success mx-center text-center">
+                <br/>
             <table border="1" class="mx-auto text-center">
                 <tr>
                     <th>ID</th>
@@ -136,7 +137,7 @@
                 <%try{
                 for(Mecanico m: Mecanico.getMecanico()){ %>
                     <tr>
-         |              <td><%= m.getId()%></td>
+                        <td><%= m.getId()%></td>
                         <td><%= m.getCpf() %></td>
                         <td><%= m.getNome() %></td>
                         <td><form>

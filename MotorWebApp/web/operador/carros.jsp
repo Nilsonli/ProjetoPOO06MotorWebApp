@@ -175,11 +175,11 @@
                         <td><%= (String) ob[1] %></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= c.getId() %>"/>
-                                <input type="submit" name="formDeletar" value="Deletar">
+                                <input type="submit" name="formDeletar" value="Deletar"  class="btn btn-danger">
                             </form></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= c.getId() %>"/>
-                                <input type="submit" name="formAlterar" value="Alterar">
+                                <input type="submit" name="formAlterar" value="Alterar" class="btn btn-warning">
                         </form></td>
                     </tr>
                     <%}} catch(Exception ex){} %>
