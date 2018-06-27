@@ -1,7 +1,9 @@
 package br.com.fatecpg.motorwebapp.web;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.apache.derby.client.am.Decimal;
 
 /**
  *
@@ -9,12 +11,12 @@ import java.util.ArrayList;
  */
 public class Consertos {
     private long id;
-    private String placa;
-    private String mecanico;
+    private int placa;
+    private int mecanico;
     private String peca;
     private Double preco;
 
-    public Consertos(long id, String placa, String mecanico, String peca, Double preco) {
+    public Consertos(long id, int placa, int mecanico, String peca, Double preco) {
         this.id = id;
         this.placa = placa;
         this.mecanico = mecanico;
@@ -38,8 +40,8 @@ public class Consertos {
                 Object row[] = list.get(i);
                 Consertos u = new Consertos(
                     (long)row[0]
-                    , (String) row[1]
-                    , (String) row[2]
+                    , (int) row[1]
+                    , (int) row[2]
                     , (String) row[3]
                     , (Double) row[4]);
                 consertos.add(u);
@@ -48,7 +50,7 @@ public class Consertos {
         return consertos;
     }
 
-    public static void addConsertos(String placa, String mecanico, String peca, Double preco) throws SQLException, ClassNotFoundException
+    public static void addConsertos(int placa, int mecanico, String peca, Double preco) throws SQLException, ClassNotFoundException
     {   
         String SQL = "INSERT INTO CONSERTO VALUES(default, ?, ?, ?, ?)";
         Object parameters[] = {placa, mecanico, peca, preco};
@@ -75,19 +77,59 @@ public class Consertos {
         this.id = id;
     }
 
-    public String getPlaca() {
+    public int getPlaca() {
         return placa;
     }
 
-    public void setPlaca(String placa) {
+    public void setPlaca(int placa) {
         this.placa = placa;
     }
 
-    public String getMecanico() {
+    public int getMecanico() {
         return mecanico;
     }
-
-    public void setMecanico(String mecanico) {
+    
+        
+      public static String getMecanicos(long id) throws SQLException, ClassNotFoundException
+    {   
+        String SQL = "SELECT NOME FROM MECANICO WHERE ID=?";
+        String mecanicos;
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, parameters);
+        if(list.isEmpty())
+        {
+            return null;
+        }    
+        else
+        {
+                Object row[] = list.get(0);
+                mecanicos = (String)row[0];
+        }
+        return mecanicos;
+    }
+      
+ /*         public static ArrayList<Object[]> getClientes(long id) throws SQLException, ClassNotFoundException
+    {   
+        String SQL = "SELECT id, nome FROM CLIENTE WHERE ID<>?";
+        ArrayList<Object[]> clientes = new ArrayList<>();
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, parameters);
+        if(list.isEmpty())
+        {
+            return null;
+        }    
+        else
+        {
+            for(int i = 0; i < list.size(); i++)
+            {
+                Object row[] = list.get(i);
+                clientes.add(row);
+            }
+        }
+        return clientes;
+    }*/
+    
+    public void setMecanico(int mecanico) {
         this.mecanico = mecanico;
     }
 
