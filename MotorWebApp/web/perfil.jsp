@@ -42,7 +42,7 @@
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
-        <h1>Perfil</h1>
+        <h1 class="text-center mx-auto display-4">Perfil</h1>
         <%if(session.getAttribute("user") == null){%>
             <h2 style="color: red">TU NÃO TA LOGADO NÃO MERMÃO</h2>
         <%}else{

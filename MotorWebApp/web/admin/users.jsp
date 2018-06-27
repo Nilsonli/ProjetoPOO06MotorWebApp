@@ -48,7 +48,7 @@
     </head>
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf" %>
-        <h1>Usuarios</h1>
+        <h1 class="text-center mx-auto display-4">Usuarios</h1>
         <%if(session.getAttribute("user") == null){%>
             <h2 style="color: red">TU NÃO TA LOGADO NÃO MERMÃO</h2>
         <%}else{%>
@@ -59,10 +59,11 @@
                 out.print("<h2 style='color: red'>TU NEM É ADMIN MANO, SAI DAQUI</h2>");
             }
             else { if(error!=null) out.print("<h2>" + error + "</h2>");%>
+            <div class="container-fluid border border-success mx-center text-center">
             <fieldset>
             <legend>Novo usuario</legend>
                 <form>
-                    <table>
+                    <table class="mx-auto text-center">
                         <tr><td><label for="role">Papel </label></td><td><select name="role" id="role">
                                                         <option value="ADMIN">ADMIN</option >
                                                         <option value="OPERADOR">OPERADOR</option>     
@@ -70,11 +71,15 @@
                     <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
                     <tr><td><label for="user">Usuario </label></td><td><input type="text" name="user" id="user" required/></td></tr>
                     <tr><td><label for="pass">Senha </label></td><td><input type="password" name="pass" id="pass" required/></td></tr>
-                    <tr align="right"><td colspan="2"><input type="submit" name="formNewUser" value="Adicionar"/></td></tr>
+                    <tr align="right"><td colspan="2"><input type="submit" name="formNewUser" value="Adicionar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
             </fieldset>
-            <table border="1">
+            </div>
+            <br/>
+            <div class="container-fluid border border-success mx-center text-center">
+                <br/>
+            <table border="1" class="mx-auto text-center">
                 <tr>
                     <th>ID</th>
                     <th>PAPEL</th>
@@ -90,7 +95,7 @@
                         <td><%= u.getLogin()%></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= u.getId() %>"/>
-                                <input type="submit" name="formDeletar" value="Deletar">
+                                <input type="submit" name="formDeletar" value="Deletar" class="btn-danger">
                             </form></td>
                     </tr>
                 <%}%>
@@ -98,5 +103,7 @@
             <%}
         %>
         <%}%>
+        <br/>
+            </div>
     </body>
 </html>
