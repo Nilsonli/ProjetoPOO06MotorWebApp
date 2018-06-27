@@ -49,6 +49,7 @@ public class Consertos {
         }
         return consertos;
     }
+    
 
     public static void addConsertos(int placa, int mecanico, String peca, Double preco) throws SQLException, ClassNotFoundException
     {   
@@ -62,7 +63,7 @@ public class Consertos {
         Object parameters[] = {id};
         DatabaseConnector.setQuery(SQL, parameters);
     }
-    public static void altConsertos(String placa, String mecanico, String peca, Double preco, long id) throws SQLException, ClassNotFoundException
+    public static void altConsertos(int placa, int mecanico, String peca, Double preco, long id) throws SQLException, ClassNotFoundException
     {   
         String SQL = "UPDATE CONSERTO SET CARRO=?, MECANICO=?, PECA=?, PRECO=? WHERE ID=?";
         Object parameters[] = {placa, mecanico, peca, preco, id};
