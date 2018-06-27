@@ -6,6 +6,7 @@
 
 <%@page import="br.com.fatecpg.motorwebapp.web.Carros"%>
 <%@page import="br.com.fatecpg.motorwebapp.web.Mecanico"%>
+<%@page import="br.com.fatecpg.motorwebapp.web.Clientes"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="br.com.fatecpg.motorwebapp.web.Consertos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -119,8 +120,8 @@
                     </select>
                     Peça Utilizada <input type="text" name="peca" id="peca" required>
                     Valor do conserto <input type="number" name="preco" step="0.1" id="preco" required>
-                    <input type="submit" name="addNewConserto" value="Confirmar">
-                    <input type="reset" name="resetForm" value="Cancelar">
+                    <input type="submit" name="addNewConserto" value="Confirmar" class="btn btn-success">
+                    <input type="reset" name="resetForm" value="Cancelar" class="btn btn-danger">
                 </form>
             </fieldset>
                     <br/>
@@ -150,8 +151,8 @@
                     Peça Utilizada <input type="text" name="altpeca" id="altpeca" value="<%= nomepeca %>" required>
                     Valor do conserto <input type="number" name="altpreco" step="0.1" id="altpreco" value="<%= preco %>" required>
                                       <input type="hidden" name="idalt" value="<%= altidc %>"/>
-                    <input type="submit" name="alterarConserto" value="Confirmar">
-                    <input type="submit" name="resetFormalt" value="Cancelar">
+                    <input type="submit" name="alterarConserto" value="Confirmar" class="btn btn-success">
+                    <input type="submit" name="resetFormalt" value="Cancelar" class="btn btn-danger">
                 </form>
             </fieldset>
                     <br/>
@@ -164,7 +165,8 @@
 <br/>
             <table class="mx-auto text-center" border="2">
                 <tr>
-                    <th>ID</th>
+
+                    <th>Nome Cliente</th>
                     <th>Placa</th>
                     <th>Modelo</th>
                     <th>Marca</th>
@@ -172,21 +174,28 @@
                     <th>Peça</th>
                     <th>Preço</th>
                 </tr>
-                <% try{ for(Consertos u: Consertos.getConsertos()){String nome="";String placa="";String modelo="";String marca="";int idcli;%>
+                <% try{ for(Consertos u: Consertos.getConsertos()){long idcli=0;String nome="";String placa="";String modelo="";String marca="";String nomecli="";%>
                <tr>
                    <%for(Mecanico m: Mecanico.getMecanico()){
                         if (m.getId() == u.getMecanico()){
                             nome = m.getNome();
                         }
-                    for(Carros c: Carros.getCarros())
+                   }
+                    for(Carros c: Carros.getCarros()){
                         if (c.getId() == u.getPlaca()){
                             placa = c.getPlaca();
                             modelo= c.getModelo();
                             marca= c.getMarca();
-                            idcli= c.getCliente();
-                        }      
-                    }%>
-                   <td><%= u.getId()%></td>
+                            idcli = c.getCliente();
+                        }}
+                   for(Clientes cli: Clientes.getClientes()){
+                   if (cli.getId() == idcli){
+                            nomecli = cli.getNome();
+                   }
+                   }
+
+%>
+                    <td><%=nomecli %></td>
                     <td><%=placa %></td>
                     <td><%=modelo %></td>
                     <td><%=marca %></td>
@@ -195,11 +204,11 @@
                     <td><%= u.getPreco() %>0</td>
                     <td><form>
                         <input type="hidden" name="id" value="<%= u.getId() %>"/>
-                        <input type="submit" name="formDeletar" value="Deletar">
+                        <input type="submit" name="formDeletar" value="Deletar" class="btn btn-danger">
                     </form></td>
                     <td><form>
                         <input type="hidden" name="id" value="<%= u.getId() %>"/>
-                        <input type="submit" name="formAlterar" value="Alterar">
+                        <input type="submit" name="formAlterar" value="Alterar" class="btn btn-warning">
                     </form>
                         
                     </td>

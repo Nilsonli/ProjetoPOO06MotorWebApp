@@ -73,6 +73,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <title>Carros</title>
     </head>
     <body>
@@ -84,34 +85,41 @@
             <% 
             if(error!=null) out.print("<h2>" + error + "</h2>");%>
             <% if(request.getParameter("formAlterar") == null) {%>
+            <div class="container-fluid border border-success mx-center text-center">
             <fieldset>
             <legend>Novo Cliente</legend>
                 <form>
-                    <table>
+                    <table class="text-center mx-auto">
                         <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
                     <tr><td><label for="cpf">CPF </label></td><td><input type="text" name="cpf" id="cpf" required/></td></tr>
                     <tr><td><label for="tel">Telefone </label></td><td><input type="text" name="tel" id="tel" required/></td></tr>
-                    <tr align="right"><td colspan="2"><input type="submit" name="formNewCliente" value="Adicionar"/></td></tr>
+                    <tr align="right"><td colspan="2"><input type="submit" name="formNewCliente" value="Adicionar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
             </fieldset>
+            </div>
+                <br/>
             <hr/>
             <%} else {%>
+            <div class="container-fluid border border-success mx-center text-center">
             <fieldset>
                 <legend>Alterar Cliente: <%= nome %></legend>
                 <form>
-                    <table
+                    <table class="text-center mx-auto">
                         <tr><td><label for="nomee">Nome </label></td><td><input type="text" name="nome" value="<%= nome %>" id="nomee" required/></td></tr>
                         <tr><td><label for="cpfe">CPF </label></td><td><input type="text" name="cpf" value="<%= cpf %>" id="cpfee" required/></td></tr>
                         <tr><td><label for="tele">Telefone </label></td><td><input type="text" name="tel" value="<%= tel %>" id="tele" required/></td></tr>
                         <input type="hidden" name="id" value="<%=id%>">
-                        <tr align="right"><td colspan="2"><input type="submit" name="executaAlterar" value="Alterar"/></td></tr>
+                        <tr align="right"><td colspan="2"><input type="submit" name="executaAlterar" value="Alterar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
             </fieldset>
+            </div>
             <hr/>
             <%}%>
-            <table border="1">
+            <div class="container-fluid border border-success mx-center text-center">
+                <br/>
+            <table border="1" class="mx-auto text-center">
                 <tr>
                     <th>ID</th>
                     <th>NOME</th>
@@ -129,16 +137,18 @@
                         <td><%= c.getTel() %></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= c.getId() %>"/>
-                                <input type="submit" name="formDeletar" value="Deletar">
+                                <input type="submit" name="formDeletar" value="Deletar" class="btn btn-danger">
                             </form></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= c.getId() %>"/>
-                                <input type="submit" name="formAlterar" value="Alterar">
+                                <input type="submit" name="formAlterar" value="Alterar" class="btn btn-warning">
                         </form></td>
                     </tr>
                 <%}} catch(Exception ex){
                         out.print(ex.getMessage());} %>
             </table>
             <%}%>
+            <br/>
+            </div>
     </body>
 </html>

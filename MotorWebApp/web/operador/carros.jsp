@@ -84,6 +84,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <title>Carros</title>
     </head>
     <body>
@@ -95,10 +96,11 @@
             <% 
             if(error!=null) out.print("<h2>" + error + "</h2>");%>
             <% if(request.getParameter("formAlterar") == null) {%>
+            <div class="container-fluid border border-success mx-center text-center">
             <fieldset>
             <legend>Novo Carro</legend>
                 <form>
-                    <table>
+                    <table class="mx-auto text-center">
                         <tr><td><label for="placa">Placa </label></td><td><input type="text" name="placa" maxlength="7" id="placa" required/></td></tr>
                     <tr><td><label for="modelo">Modelo </label></td><td><input type="text" name="modelo" id="modelo" required/></td></tr>
                     <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
@@ -113,10 +115,11 @@
                             <option value="null" disabled>Não há clientes</option>
                             <%}%>
                             </select></td></tr>
-                    <tr align="right"><td colspan="2"><input type="submit" name="formNewCar" value="Adicionar"/></td></tr>
+                    <tr align="center"><td colspan="2"><input type="submit" name="formNewCar" value="Adicionar" class="btn btn-success"/></td></tr>
                     </table>
                 </form>
             </fieldset>
+            </div>
             <hr/>
             <%} else {%>
             <fieldset>
@@ -144,8 +147,11 @@
                 </form>
             </fieldset>
             <hr/>
+         
             <%}%>
-            <table border="1">
+            <div class="container-fluid border border-success mx-center text-center">
+                <br/>
+            <table border="1" class="mx-auto text-center">
                 <tr>
                     <th>ID</th>
                     <th>PLACA</th>
@@ -178,6 +184,8 @@
                     </tr>
                     <%}} catch(Exception ex){} %>
             </table>
+            <br/>
+            </div>
             <%}%>
     </body>
 </html>

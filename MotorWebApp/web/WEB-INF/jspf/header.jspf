@@ -26,7 +26,8 @@
     }
 %>
 <div class="mx-auto text-center">
-<h1 class="display-1">Parking Web</h1>
+<h1 class="display-1">Web Oficina</h1>
+<br/>
 <%if(errorMessage!=null){%>
 <h3 style="color: red"><%= errorMessage %> </h3>
 <%}%>
@@ -37,17 +38,17 @@
         <input type="text" name="user" id="user"/>
         <label for="password">Senha</label>
         <input type="password" name="pass" id="password"/>
-        <input type="submit" name="formLogin" value="Entrar"/>
+        <input type="submit" name="formLogin" class="btn btn-success" value="Entrar"/>
     </form>
     <%}else{%>
     <form action="<%= path %>/home.jsp">
     <% User user = (User) session.getAttribute("user"); %>
-    Bem vindo, <%= user.getName() %> [<%= user.getRole() %>]
-    <input type="submit" name="formLogoff" value="Sair"/>
+    <h4>Bem vindo, <%= user.getName() %> <span class="text-danger">[<%= user.getRole() %>]</span>
+        <input type="submit" name="formLogoff" class="btn btn-danger" value="Sair"/></h4>
     </form>
     <h2>
         <a href="<%= path %>/home.jsp"> Home </a>
-        <%if(user.getRole().equals("ADMIN")){ %>  || [<a href="<%= path %>/admin/users.jsp"> Usuarios </a>] <%}%>
+        <%if(user.getRole().equals("ADMIN")){ %>  || <a href="<%= path %>/admin/users.jsp"> Usuarios </a> <%}%>
         || <a href="<%= path %>/perfil.jsp">Perfil</a>
         || <a href="<%= path %>/operador/clientes.jsp">Clientes</a>
         || <a href="<%= path %>/operador/mecanicos.jsp">Mecanicos</a>

@@ -37,6 +37,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <title>Perfil</title>
     </head>
     <body>
@@ -46,10 +47,11 @@
             <h2 style="color: red">TU NÃO TA LOGADO NÃO MERMÃO</h2>
         <%}else{
             User userss = (User) session.getAttribute("user");%>
+             <div class="container-fluid border border-success mx-center text-center">
             <fieldset>
             <legend>Perfil</legend>
                 <form>
-                    <table border="0">
+                    <table border="0" class="mx-auto text-center">
                     <tr><td>Papel </td><td><select name="role" id="role">
                         <%if(userss.getRole().equals("ADMIN")){ %><option value="ADMIN">ADMIN</option ><option value="OPERADOR">OPERADOR</option> <%}%>    
                         <%if(userss.getRole().equals("OPERADOR")){ %><option value="OPERADOR">OPERADOR</option> <%}%>    
@@ -59,10 +61,12 @@
                     <tr><td>Senha Antiga</td><td><input type="password" name="antpass" id="antpass" required/></td><td style="color: red"><b><%= senhaantiga %></b></td></tr>
                     <tr><td>Senha </td><td><input type="password" name="pass" id="pass" required/></td><td></td></tr>
                     <tr><td>Confirmar Senha </td><td><input type="password" name="confpass" id="confpass" required/></td><td  style="color: red"><b><%= senhanaoiguais  %></b></td></tr>
-                    <tr align="right"><td colspan="2"><input type="submit" name="formAlt" value="Alterar"/></td><td></td></tr>
+                    <tr align="right"><td colspan="2"><input type="submit" name="formAlt" value="Alterar" class="btn btn-success"/></td><td></td></tr>
                     </table>
                 </form>
             </fieldset>
-           <%}%>                 
+           <%}%>
+             </div>
+           <br/>
     </body>
 </html>
