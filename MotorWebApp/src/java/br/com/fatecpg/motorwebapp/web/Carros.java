@@ -138,7 +138,7 @@ public class Carros {
             return c;
         }   
     }
-    public static ArrayList<Object[]> getClientes(long id) throws SQLException, ClassNotFoundException
+    public static ArrayList<Object[]> getClientesMenosUm(long id) throws SQLException, ClassNotFoundException
     {   
         String SQL = "SELECT id, nome FROM CLIENTE WHERE ID<>?";
         ArrayList<Object[]> clientes = new ArrayList<>();
@@ -158,7 +158,7 @@ public class Carros {
         }
         return clientes;
     }
-    public static ArrayList<Object[]> getClientee(long id) throws SQLException, ClassNotFoundException
+    public static ArrayList<Object[]> getClienteDeCadaCarro(long id) throws SQLException, ClassNotFoundException
     {   
         String SQL = "SELECT CLIENTE.ID, CLIENTE.NOME FROM CLIENTE, CARRO WHERE CARRO.CLIENTE = CLIENTE.ID AND CLIENTE.ID = ?";
         ArrayList<Object[]> clientes = new ArrayList<>();

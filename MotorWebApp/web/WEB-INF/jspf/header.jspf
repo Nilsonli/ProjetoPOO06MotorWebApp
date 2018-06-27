@@ -25,7 +25,7 @@
         response.sendRedirect(request.getRequestURI());
     }
 %>
-<h1>Parking Web</h1>
+<h1>Motor Web</h1>
 <%if(errorMessage!=null){%>
 <h3 style="color: red"><%= errorMessage %> </h3>
 <%}%>
@@ -49,7 +49,7 @@
         <%if(user.getRole().equals("ADMIN")){ %>  || [<a href="<%= path %>/admin/users.jsp"> Usuarios </a>] <%}%>
         || <a href="<%= path %>/perfil.jsp">Perfil</a>
         || <a href="<%= path %>/operador/clientes.jsp">Clientes</a>
-        || <a href="<%= path %>/operador/clientes.jsp">Mecanicos</a>
+        || <a href="<%= path %>/operador/mecanicos.jsp">Mecanicos</a>
         || <a href="<%= path %>/operador/carros.jsp">Carros</a>
         || <a href="<%= path %>/operador/consertos.jsp">Consertos</a>
     </h2>
