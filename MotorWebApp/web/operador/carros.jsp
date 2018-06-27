@@ -122,15 +122,14 @@
                         <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" value="<%= ano %>" id="anoe" required/></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%= id %>">
                         <tr><td><label for="clientee">Cliente </label></td><td><select name="cliente" id="clientee">
-                        <% ArrayList<Object[]> um = Carros.getClientee(id);
+                        <%try{ ArrayList<Object[]> um = Carros.getClientee(id);
                             Object[] ob = um.get(0);  %>
-                            <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                        <%  ArrayList<Object[]> o = Carros.getClientes(id);
-                            if(o != null){
+                            <option value="<%= (long) ob[0] %>"><%= (String) ob[1]%></option><%}catch(Exception ex){}%>
+                        <%try{ArrayList<Object[]> o = Carros.getClientes(id);
                             for(int i = 0; i < o.size(); i++){
                             Object[] obj = o.get(i);  %>
                             <option value="<%= (long) obj[0] %>"><%= (String) obj[1] %></option >
-                            <%}}%>
+                            <%}} catch(Exception ex) {} %>
                             </select></td></tr>
                         <tr align="right"><td colspan="2"><input type="submit" name="executaAlterar" value="Alterar"/></td></tr>
                     </table>
@@ -150,7 +149,7 @@
                 </tr>
                 <%for(Carros c: Carros.getCarros()){ %>
                     <tr>
-                        <% ArrayList<Object[]> um = Carros.getClientee(c.getId());
+                        <% try{ArrayList<Object[]> um = Carros.getClientee(c.getId());
                             Object[] ob = um.get(0);  %>
                         <td><%= c.getId()%></td>
                         <td><%= c.getPlaca() %></td>
@@ -167,7 +166,7 @@
                                 <input type="submit" name="formAlterar" value="Alterar">
                         </form></td>
                     </tr>
-                <%}%>
+                <%}catch(Exception ex) {}} %>
             </table>
             <%}%>
     </body>
