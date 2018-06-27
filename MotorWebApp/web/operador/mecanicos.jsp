@@ -90,7 +90,7 @@
             <legend>Novo Mecanico</legend>
                 <form>
                     <table>
-                        <tr><td><label for="cpf">Cpf </label></td><td><input type="text" name="cpf" id="cpf" required/></td></tr>
+                        <tr><td><label for="cpf">Cpf </label></td><td><input type="number" name="cpf" maxlength="11" id="cpf" required/></td></tr>
                     <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
                     <tr align="right"><td colspan="2"><input type="submit" name="formNewMecanic" value="Adicionar"/></td></tr>
                     </table>
@@ -103,7 +103,7 @@
                 <form>
                     <table>
                                               
-                        <tr><td><label for="cpfe">Cpf </label></td><td><input type="text" name="cpf" value="<%= cpf %>" id="cpfe" required/></td></tr>
+                        <tr><td><label for="cpfe">Cpf </label></td><td><input type="number" name="cpf" maxlength="11" value="<%= Integer.parseInt(cpf) %>" id="cpfe" required/></td></tr>
                         <tr><td><label for="nomee">Nome </label></td><td><input type="text" name="nome" value="<%= nome %>" id="nomee" required/></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%= id %>">
                      </td></tr>
