@@ -25,7 +25,8 @@
         response.sendRedirect(request.getRequestURI());
     }
 %>
-<h1>Motor Web</h1>
+<div class="mx-auto text-center">
+<h1 class="display-1">Parking Web</h1>
 <%if(errorMessage!=null){%>
 <h3 style="color: red"><%= errorMessage %> </h3>
 <%}%>
@@ -54,4 +55,5 @@
         || <a href="<%= path %>/operador/consertos.jsp">Consertos</a>
     </h2>
     <%}%>
+</div>
 <hr/>
