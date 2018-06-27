@@ -100,11 +100,11 @@
                     <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
                     <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" id="ano" required/></td></tr>
                     <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente">
-                        <% ArrayList<Object[]> o = Carros.getClientes(0);
+                        <%try{ ArrayList<Object[]> o = Carros.getClientes(0);
                             for(int i = 0; i < o.size(); i++){
                             Object[] ob = o.get(i);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                            <%}%>
+                            <%}} catch(Exception ex) {%><option value=" ">Não há clientes</option > <%} %>
                             </select></td></tr>
                     <tr align="right"><td colspan="2"><input type="submit" name="formNewCar" value="Adicionar"/></td></tr>
                     </table>
