@@ -4,8 +4,9 @@
     Author     : PauloHGama e Nilsonli
 --%>
 
+<%@page import="br.com.fatecpg.motorwebapp.web.Mecanico"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="br.com.fatecpg.motorwebapp.web.Carros"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -29,12 +30,12 @@
     }
     if(request.getParameter("formAlterar") != null)
     {
-        Mecanico m = mecanico.getMecanicoAlterar(Long.parseLong(request.getParameter("id")));
+        Mecanico m = Mecanico.getMecanicoAlterar(Long.parseLong(request.getParameter("id")));
         id = m.getId();
         cpf = m.getCpf();
         nome = m.getNome();
     }
-    if(request.getParameter("formNewCar") != null)
+    if(request.getParameter("formNewMecanic") != null)
     {
         cpf = request.getParameter("cpf");
         nome = request.getParameter("nome");
@@ -91,13 +92,6 @@
                     <table>
                         <tr><td><label for="cpf">Cpf </label></td><td><input type="text" name="cpf" id="cpf" required/></td></tr>
                     <tr><td><label for="nome">Nome </label></td><td><input type="text" name="nome" id="nome" required/></td></tr>
-               
-                        <% ArrayList<Object[]> o = Mecanico.getMecanicos(0);
-                            for(int i = 0; i < o.size(); i++){
-                            Object[] ob = o.get(i);  %>
-                            <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                            <%}%>
-                            </select></td></tr>
                     <tr align="right"><td colspan="2"><input type="submit" name="formNewMecanic" value="Adicionar"/></td></tr>
                     </table>
                 </form>
@@ -124,28 +118,27 @@
                     <th>ID</th>
                     <th>CPF</th>
                     <th>NOME</th>
-                    <th colspan="2">Ações</th>
+                   <th colspan="2">Ações</th>
                 </tr>
-                <%for(Mecanico m: Mecanico.getMecanicos()){ %>
+                <%try{
+                for(Mecanico m: Mecanico.getMecanico()){ %>
                     <tr>
-                        <% ArrayList<Object[]> um = Mecanico.getMecanicos(m.getId());
-                            Object[] ob = um.get(0);  %>
-                        <td><%= m.getId()%></td>
+         |              <td><%= m.getId()%></td>
                         <td><%= m.getCpf() %></td>
                         <td><%= m.getNome() %></td>
-                        <td><%= (String) ob[1] %></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= m.getId() %>"/>
-                                <input type="submit" name="formDeletar" value="Deletar">
-                            </form></td>
+                                <input type="submit" name="formDeletar" value="Deletar">                                
+                  </form></td>
                         <td><form>
                                 <input type="hidden" name="id" value="<%= m.getId() %>"/>
                                 <input type="submit" name="formAlterar" value="Alterar">
                         </form></td>
                     </tr>
-                <%}%>
+                    <%}}catch(Exception ex){}%>
+                
             </table>
-            <%}%>
+           
             <%}}%>
     </body>
 </html>

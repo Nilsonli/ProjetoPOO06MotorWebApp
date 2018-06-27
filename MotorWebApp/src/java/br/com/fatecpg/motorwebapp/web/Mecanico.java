@@ -66,7 +66,7 @@ public Mecanico(long id, String cpf, String nome) {
         }
         return mecanic;
     }
-    public static void addMecanico(int cpf, String nome) throws SQLException, ClassNotFoundException
+    public static void addMecanico(String cpf, String nome) throws SQLException, ClassNotFoundException
     {   
         String SQL = "INSERT INTO MECANICO VALUES(default, ?, ?)";
         Object parameters[] = {cpf, nome};
@@ -80,7 +80,7 @@ public Mecanico(long id, String cpf, String nome) {
     }
     public static void altMecanico(String cpf, String nome, long id) throws SQLException, ClassNotFoundException
     {   
-        String SQL = "UPDATE MECANICO SET cpf=?, nome=?, WHERE ID=?";
+        String SQL = "UPDATE MECANICO SET cpf=?, nome=? WHERE ID=?";
         Object parameters[] = {cpf, nome, id};
         DatabaseConnector.setQuery(SQL, parameters);
     }
