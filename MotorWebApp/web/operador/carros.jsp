@@ -100,7 +100,7 @@
                     <tr><td><label for="marca">Marca </label></td><td><input type="text" name="marca" id="marca" required/></td></tr>
                     <tr><td><label for="ano">Ano </label></td><td><input type="number" name="ano" id="ano" required/></td></tr>
                     <tr><td><label for="cliente">Cliente </label></td><td><select name="cliente" id="cliente">
-                        <% ArrayList<Object[]> o = Carros.getClientes(0);
+                        <% ArrayList<Object[]> o = Carros.getClientesMenosUm(0);
                             try{for(int i = 0; i < o.size(); i++){
                             Object[] ob = o.get(i);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
@@ -125,10 +125,10 @@
                         <tr><td><label for="anoe">Ano </label></td><td><input type="number" name="ano" value="<%= ano %>" id="anoe" required/></td></tr>
                         <tr><td><input type="hidden" name="id" value="<%= id %>">
                         <tr><td><label for="clientee">Cliente </label></td><td><select name="cliente" id="clientee">
-                        <% ArrayList<Object[]> um = Carros.getClientee(id);
+                        <% ArrayList<Object[]> um = Carros.getClienteDeCadaCarro(id);
                             Object[] ob = um.get(0);  %>
                             <option value="<%= (long) ob[0] %>"><%= (String) ob[1] %></option >
-                        <%  ArrayList<Object[]> o = Carros.getClientes(id);
+                        <%  ArrayList<Object[]> o = Carros.getClientesMenosUm(id);
                             try{
                             for(int i = 0; i < o.size(); i++){
                             Object[] obj = o.get(i);  %>
@@ -155,7 +155,7 @@
                     for(Carros c: Carros.getCarros()){
                     %>
                     <tr>
-                        <% ArrayList<Object[]> um = Carros.getClientee(c.getCliente());
+                        <% ArrayList<Object[]> um = Carros.getClienteDeCadaCarro(c.getCliente());
                             Object[] ob = um.get(0);  %>
                         <td><%= c.getId()%></td>
                         <td><%= c.getPlaca() %></td>
