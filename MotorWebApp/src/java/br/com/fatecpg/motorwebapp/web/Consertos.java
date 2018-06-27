@@ -92,7 +92,7 @@ public class Consertos {
     public String getNomeMecanico() throws SQLException, ClassNotFoundException {
         id = this.mecanico;
         String SQL = "SELECT * FROM MECANICO WHERE ID=?";
-        String nome = new String();
+        String nome;
         ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, new Object[]{});
                 if(list.isEmpty())
                 {
