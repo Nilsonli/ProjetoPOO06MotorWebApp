@@ -4,6 +4,7 @@
     Author     : PauloHGama e Nilsonli
 --%>
 
+<%@page import="br.com.fatecpg.motorwebapp.web.ValidarCPF"%>
 <%@page import="br.com.fatecpg.motorwebapp.web.Mecanico"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -39,14 +40,20 @@
     {
         cpf = request.getParameter("cpf");
         nome = request.getParameter("nome");
-        try
-        {
-            Mecanico.addMecanico(cpf, nome);
-            response.sendRedirect(request.getRequestURI());
+        if(ValidarCPF.CPFVALIDADO(cpf)){
+            try
+            {
+                Mecanico.addMecanico(cpf, nome);
+                response.sendRedirect(request.getRequestURI());
+            }
+            catch(Exception ex)
+            {
+                error = ex.getMessage();
+            }
         }
-        catch(Exception ex)
+        else
         {
-            error = ex.getMessage();
+            error = "CPF INVALIDO";
         }
     }
     if(request.getParameter("executaAlterar") != null)
@@ -84,7 +91,7 @@
             {
                 out.print("<h2 style='color: red'>TU NEM É ADMIN MANO, SAI DAQUI</h2>");
             }
-            else { if(error!=null) out.print("<h2>" + error + "</h2>");%>
+            else { if(error!=null) out.print("<h2 style='color: red'>" + error + "</h2>");%>
              <% if(request.getParameter("formAlterar") == null) {%>
             <fieldset>
             <legend>Novo Mecanico</legend>
